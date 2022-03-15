@@ -4,7 +4,8 @@ This is a quick python script that utilizes the [Roblox Account Manager](https:/
 # Requirements
 * In your `Roblox-Account-Loader` folder, `shift+right-click`, click `open in terminal` or similar and then run `pip install -r requirements.txt`
 * Set Environment variables or edit variables in script:
-* * 
+* * `ram_password` - set this to the password you set in `RAMSettings.ini`
+* * `rbx_prv_svr_code` - set this to your private server's code. (This comes from the end of the private server join link.)
 
 # Roblox Account Manager
 * Install Roblox Account Manager, linked above
