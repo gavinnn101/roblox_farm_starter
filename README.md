@@ -9,7 +9,7 @@ In your `Roblox-Account-Loader` folder, `shift+right-click`, click `open in term
 * * Add all of your accounts to the program...
 * * Edit `RAMSettings.ini` to:
 * * * `EnableWebServer=true`
-* * * `WebServerPort=5151`
+* * * `WebServerPort=5151` (This can be anything you want but change the port in `main.py` accordingly
 * * * `AllowGetAccounts=true`
 * * * `AllowLaunchAccount=true`
 * * In `main.py` edit `Roblox Alt Manager Settings` at the top as needed.
