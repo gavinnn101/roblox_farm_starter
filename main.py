@@ -136,6 +136,7 @@ def launch_account(account_name: str) -> None:
         logger.debug(f'Waiting for {account_name} to finish launching (proc count: {client_count})')
         time.sleep(2)
         client_count = get_proc_count('roblox')
+    logger.success(f'{account_name} launch finished!')
 
 
 def main():
