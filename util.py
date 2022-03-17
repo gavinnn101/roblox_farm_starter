@@ -1,8 +1,10 @@
 import psutil
+import win32gui, win32process, win32con
+from loguru import logger
 
 def check_for_process(process_name) -> bool:
-    """Returns True if process is open, otherwise returns False"""
-    return process_name in (p.name() for p in psutil.process_iter())
+	"""Returns True if process is open, otherwise returns False"""
+	return process_name in (p.name() for p in psutil.process_iter())
 
 
 def get_proc_count(process_name: str) -> int:
@@ -17,6 +19,20 @@ def get_proc_count(process_name: str) -> int:
 
 def kill_process(process_name):
 	""""Kills all processes with the given name"""
-	for proc in psutil.process_iter():
-		if proc.name() == process_name:
-			proc.kill()
+	for p in psutil.process_iter():
+		if p.name() == process_name:
+			p.kill()
+
+
+def minimize_clients():
+	"""Mimimizes all Roblox clients.
+	This is useful because Roblox doesn't render graphics while minimized. Saves resources.
+	https://stackoverflow.com/a/2323367
+	"""
+	def enumHandler(hwnd, lParam):
+		if win32gui.IsWindowVisible(hwnd):
+			if 'Roblox' in win32gui.GetWindowText(hwnd) and not win32gui.IsIconic(hwnd):
+				logger.debug('Minimizing Roblox client')
+				win32gui.ShowWindow(hwnd, win32con.SW_MINIMIZE)
+
+	win32gui.EnumWindows(enumHandler, None)

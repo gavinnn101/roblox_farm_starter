@@ -4,7 +4,7 @@ import psutil
 import requests
 import subprocess
 from loguru import logger
-from util import check_for_process, get_proc_count, kill_process
+from util import check_for_process, get_proc_count, kill_process, minimize_clients
 
 # Roblox Alt Manager Settings
 ram_ip = 'http://localhost'
@@ -150,6 +150,8 @@ def main():
         for acc in accs:
             logger.info(f"Launching account: {acc}")
             launch_account(acc)
+        # roblox doesnt render graphics when minimized. Save resources!
+        minimize_clients()
 
 
 main()
