@@ -1,9 +1,10 @@
 import os
 import time
+import psutil
 import requests
 import subprocess
 from loguru import logger
-from util import check_for_process, get_proc_count
+from util import check_for_process, get_proc_count, kill_process
 
 # Roblox Alt Manager Settings
 ram_ip = 'http://localhost'
@@ -140,6 +141,8 @@ def launch_account(account_name: str) -> None:
 
 
 def main():
+    logger.info('Ending Roblox processes')
+    kill_process('RobloxPlayerBeta.exe')
     start_synapse()
     start_ram()
     accs = get_accounts()
