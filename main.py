@@ -1,10 +1,10 @@
 import os
 import time
-import psutil
 import requests
 import subprocess
+import win32gui, win32con
 from loguru import logger
-from util import check_for_process, get_proc_count, kill_process, minimize_clients
+from util import check_for_process, get_proc_count, kill_process
 
 # Roblox Alt Manager Settings
 ram_ip = 'http://localhost'
@@ -138,6 +138,19 @@ def launch_account(account_name: str) -> None:
         time.sleep(2)
         client_count = get_proc_count('roblox')
     logger.success(f'{account_name} launch finished!')
+
+
+def minimize_clients() -> None:
+	"""Mimimizes all Roblox clients.
+	This is useful because Roblox doesn't render graphics while minimized. Saves resources.
+	https://stackoverflow.com/a/14654287
+	"""
+	def enumHandler(hwnd, lParam):
+		if win32gui.IsWindowVisible(hwnd):
+			if 'Roblox' in win32gui.GetWindowText(hwnd) and not win32gui.IsIconic(hwnd):
+				logger.debug('Minimizing Roblox client')
+				win32gui.ShowWindow(hwnd, win32con.SW_MINIMIZE)
+	win32gui.EnumWindows(enumHandler, None)
 
 
 def main():
