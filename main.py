@@ -156,6 +156,8 @@ def minimize_clients() -> None:
 def main():
     logger.info('Ending Roblox processes')
     kill_process('RobloxPlayerBeta.exe')
+    logger.info('Sleeping 10 seconds')
+    time.sleep(10)  # When restarting accounts, Roblox sometimes thinks the account is still logged in after relogging too fast.
     start_synapse()
     start_ram()
     accs = get_accounts()
