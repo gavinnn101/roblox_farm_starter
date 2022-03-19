@@ -2,6 +2,7 @@ import os
 import time
 import requests
 import subprocess
+import time
 import win32gui, win32con
 from loguru import logger
 from util import check_for_process, get_proc_count, kill_process
@@ -133,10 +134,16 @@ def launch_account(account_name: str) -> None:
     }
     # API call to launch game
     api_call('LaunchAccount', acc_launch_params)
+    start_time = time.time()
     while client_count != starting_client_count+2:  # Roblox seems to open 2 proccess per client
         logger.debug(f'Waiting for {account_name} to finish launching (proc count: {client_count})')
         time.sleep(2)
         client_count = get_proc_count('roblox')
+        time_elapsed = time.time() - start_time
+        if time_elapsed > 30:
+            logger.error(f"Couldn't load account: {account_name}")
+            break
+            
     logger.success(f'{account_name} launch finished!')
 
 
@@ -156,7 +163,7 @@ def minimize_clients() -> None:
 def main():
     logger.info('Ending Roblox processes')
     kill_process('RobloxPlayerBeta.exe')
-    logger.info('Sleeping 10 seconds')
+    logger.info('Sleeping 10 seconds')  # This sleep hack doesn't seem to solve the problem but leaving it in for now.
     time.sleep(10)  # When restarting accounts, Roblox sometimes thinks the account is still logged in after relogging too fast.
     start_synapse()
     start_ram()
