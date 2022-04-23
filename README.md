@@ -11,6 +11,7 @@ This is a quick python script that utilizes the [Roblox Account Manager](https:/
 * Install Roblox Account Manager, linked above
 * * Add all of your accounts to the program...
 * * Edit `RAMSettings.ini` to:
+* * * `AccountJoinDelay=15` (Some accounts don't load correctly with lower/default time in my experience.)
 * * * `EnableWebServer=true`
 * * * `WebServerPort=5151` (This can be anything you want but change the port in `main.py` accordingly.)
 * * * `AllowGetAccounts=true`
