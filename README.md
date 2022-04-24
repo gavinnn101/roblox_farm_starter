@@ -1,4 +1,4 @@
-# RAM Quick Account Launch
+# Roblox Bot Farm Starter
 This is a quick python script that utilizes the [Roblox Account Manager](https://github.com/ic3w0lf22/Roblox-Account-Manager) local web server api to quickly launch all accounts. I personally would never do this but I imagine it would be useful to combine this with an executor that auto loads a Roblox farming script!
 
 # Requirements
