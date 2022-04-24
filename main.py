@@ -1,3 +1,4 @@
+import json
 import os
 import time
 import requests
@@ -11,16 +12,13 @@ from util import check_for_process, get_proc_count, kill_process
 ram_ip = 'http://localhost'
 ram_port = '5151'
 ram_fqdn = f'{ram_ip}:{ram_port}'
-ram_pass = os.getenv('ram_password')
+ram_pass = os.getenv('ram_password')  # 'ram_password' is an environment variable!
 ram_dir = 'C:\\Users\\Gavin\\Desktop\\roblox stuff\\roblox alt manager'
 ram_path = f'{ram_dir}\\RBX Alt Manager.exe'
 
 # SynapseX Settings
 synapse_dir = 'C:\\Users\\Gavin\\Desktop\\roblox stuff\\synapse-launcher-11-17-21'
 synapse_path = f'{synapse_dir}\\Synapse Launcher.exe'
-
-# Pet Sim X private server code
-private_server_code = os.getenv('rbx_prv_svr_code')
 
 
 def start_synapse():
@@ -66,7 +64,8 @@ def start_ram():
             logger.error(e)
         else:
             logger.success('Successfully Started RAM.')
-
+            logger.info('Sleeping for 5 seconds while accounts load...')
+            time.sleep(5)
 
 def api_call(api_func: str, api_params: dict) -> requests.Response:
     """Makes a request to the RAM API with some error handling.
@@ -113,7 +112,7 @@ def get_accounts() -> list:
     return accs_list
 
 
-def launch_account(account_name: str) -> None:
+def launch_account(account_name: str, private_server_code) -> None:
     """Loads account into Roblox server.
     params:
         account_name: username of account in RAM to load into game
@@ -161,19 +160,25 @@ def minimize_clients() -> None:
 
 
 def main():
+    with open('account_data.json') as json_file:
+        acc_data = json.load(json_file)
+
     logger.info('Ending Roblox processes')
     kill_process('RobloxPlayerBeta.exe')
     logger.info('Sleeping 10 seconds')  # This sleep hack doesn't seem to solve the problem but leaving it in for now.
     time.sleep(10)  # When restarting accounts, Roblox sometimes thinks the account is still logged in after relogging too fast.
     start_synapse()
     start_ram()
-    accs = get_accounts()
+    accs = get_accounts()  # Get list of accounts from RAM API
     if accs:
         for acc in accs:
-            logger.info(f"Launching account: {acc}")
-            launch_account(acc)
+            # Find which group in account_data the account is in
+            for acc_group in acc_data:
+                if acc in acc_data[acc_group]['accounts']:
+                    server_code = acc_data[acc_group]['server_code']
+                    logger.info(f"Launching account: {acc} with server code: {server_code}")
+                    launch_account(acc, server_code)
         # roblox doesnt render graphics when minimized. Save resources!
         minimize_clients()
-
 
 main()
