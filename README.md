@@ -1,8 +1,9 @@
 # Roblox Bot Farm Starter
 This is a quick python script that utilizes the [Roblox Account Manager](https://github.com/ic3w0lf22/Roblox-Account-Manager) local web server api to quickly launch all accounts. I personally would never do this but I imagine it would be useful to combine this with an executor that auto loads a Roblox farming script!
 
-# Requirements
-* In your `roblox_farm_starter` folder, `shift+right-click`, click `open in terminal` or similar and then run `pip install -r requirements.txt`
+# Setup
+* Requirements
+* * In your `roblox_farm_starter` folder, `shift+right-click`, click `open in terminal` or similar and then run `pip install -r requirements.txt`
 * Set Environment variables or edit variables in script:
 * * `ram_password` - set this to the password you set in `RAMSettings.ini`
 * account_data.json
