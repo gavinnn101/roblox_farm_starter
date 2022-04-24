@@ -27,4 +27,5 @@ This is a quick python script that utilizes the [Roblox Account Manager](https:/
 * * We're assuming the farming script has all the proper settings saved to run on its own without human intervention.
 
 # Running program
-Run `quick_start.bat` or `python main.py`, etc
+* Run `quick_start.bat` or `python main.py`, etc
+* You could also use something like `Windows Task Scheduler` to run the script on a schedule.
