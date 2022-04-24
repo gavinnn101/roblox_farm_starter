@@ -5,7 +5,10 @@ This is a quick python script that utilizes the [Roblox Account Manager](https:/
 * In your `roblox_farm_starter` folder, `shift+right-click`, click `open in terminal` or similar and then run `pip install -r requirements.txt`
 * Set Environment variables or edit variables in script:
 * * `ram_password` - set this to the password you set in `RAMSettings.ini`
-* * `rbx_prv_svr_code` - set this to your private server's code. (This comes from the end of the private server join link.)
+* account_data.json
+* * You can add or remove entire groups as needed. You obviously need at least 1 group for it to function.
+* * `server_code` - set this to your private server's code. (This comes from the end of the private server join link.)
+* * `accounts` list - Add the accounts you want to join the private server to the list...
 
 # Roblox Account Manager
 * Install Roblox Account Manager, linked above
