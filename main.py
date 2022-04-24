@@ -178,7 +178,7 @@ def main():
                     server_code = acc_data[acc_group]['server_code']
                     logger.info(f"Launching account: {acc} with server code: {server_code}")
                     launch_account(acc, server_code)
-        # roblox doesnt render graphics when minimized. Save resources!
-        minimize_clients()
+            # roblox doesnt render graphics when minimized. Save resources!
+            minimize_clients()
 
 main()
