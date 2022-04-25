@@ -67,6 +67,7 @@ def start_ram():
             logger.info('Sleeping for 5 seconds while accounts load...')
             time.sleep(5)
 
+
 def api_call(api_func: str, api_params: dict) -> requests.Response:
     """Makes a request to the RAM API with some error handling.
     params:
@@ -181,4 +182,5 @@ def main():
             # roblox doesnt render graphics when minimized. Save resources!
             minimize_clients()
 
+logger.add("out.log", rotation="500 MB", backtrace=True, diagnose=True)
 main()
