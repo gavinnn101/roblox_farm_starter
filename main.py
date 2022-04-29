@@ -179,6 +179,9 @@ def main():
                     server_code = acc_data[acc_group]['server_code']
                     logger.info(f"Launching account: {acc} with server code: {server_code}")
                     launch_account(acc, server_code)
+            # This sleep may need to be adjusted depending on how fast the accounts load into the game and the script fully executes
+            # In my experience in my vm, ~7 seconds is enough for every account to load correctly..
+            time.sleep(7)
             # roblox doesnt render graphics when minimized. Save resources!
             minimize_clients()
 
