@@ -21,8 +21,8 @@ synapse_dir = 'C:\\Users\\Gavin\\Desktop\\roblox stuff\\synapse-launcher-11-17-2
 synapse_path = f'{synapse_dir}\\Synapse Launcher.exe'
 
 
-def start_synapse():
-    """Will start SynapseX if not already. Expects a specific path - see below."""
+def start_synapse() -> None:
+    """Will start SynapseX if not already. Set path at top of file."""
     ram_running = check_for_process("RBX Alt Manager.exe")
     cefsharp_count = get_proc_count('cefsharp')
     logger.debug(f'Starting cefsharp_count: {cefsharp_count}')
@@ -44,9 +44,8 @@ def start_synapse():
         logger.success('SynapseX has launched!')
 
 
-def start_ram():
-    """Will start RAM if not already. Set paths at top of file."""
-
+def start_ram() -> None:
+    """Will start RAM if not already. Set path at top of file."""
     ram_running = check_for_process("RBX Alt Manager.exe")
     if not ram_running:
         try:
@@ -113,11 +112,11 @@ def get_accounts() -> list:
     return accs_list
 
 
-def launch_account(account_name: str, private_server_code) -> None:
+def launch_account(account_name: str, private_server_code: str) -> None:
     """Loads account into Roblox server.
     params:
         account_name: username of account in RAM to load into game
-        client_count: Amount of clients currently running
+        private_server_code: Your psx private server's unique code (you get this from the end of the join link)
 
     returns:
         none
